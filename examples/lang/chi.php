@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 //============================================================+
 // File name   : chi.php
 // Begin       : 2010-10-26
@@ -28,7 +30,7 @@
 // Chinese (Simplified)
 
 global $l;
-$l = Array();
+$l = [];
 
 // PAGE META DESCRIPTORS --------------------------------------
 

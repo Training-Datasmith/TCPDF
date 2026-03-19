@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 //============================================================+
 // File name   : nob.php
 // Begin       : 2004-03-03
@@ -28,7 +30,7 @@
 // Norwegian Bokmål
 
 global $l;
-$l = Array();
+$l = [];
 
 // PAGE META DESCRIPTORS --------------------------------------
 

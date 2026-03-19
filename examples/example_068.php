@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Example 068 for TCPDF library
  *
@@ -35,8 +37,8 @@ $pdf->setKeywords('TCPDF, PDF, example, test, guide');
 $pdf->setHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE . ' 068', PDF_HEADER_STRING);
 
 // set header and footer fonts
-$pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-$pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+$pdf->setHeaderFont([PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN]);
+$pdf->setFooterFont([PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA]);
 
 // set default monospaced font
 $pdf->setDefaultMonospacedFont(PDF_FONT_MONOSPACED);
@@ -266,7 +268,8 @@ $pdf->setExtraXMPRDF(
   <fx:DocumentFileName>factur-x.xml</fx:DocumentFileName>
   <fx:Version>1.0</fx:Version>
   <fx:ConformanceLevel>EN 16931</fx:ConformanceLevel>
-</rdf:Description>');
+</rdf:Description>'
+);
 
 $pdf->setExtraXMPPdfaextension(
     '<rdf:li rdf:parseType="Resource">
@@ -303,7 +306,6 @@ $pdf->setExtraXMPPdfaextension(
     </pdfaSchema:property>
 </rdf:li>'
 );
-
 
 // ---------------------------------------------------------
 

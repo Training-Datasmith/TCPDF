@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 //============================================================+
 // File name   : ind.php
 // Begin       : 2004-03-03
@@ -28,7 +30,7 @@
 // Irish
 
 global $l;
-$l = Array();
+$l = [];
 
 // PAGE META DESCRIPTORS --------------------------------------
 

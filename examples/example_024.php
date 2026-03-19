@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 //============================================================+
 // File name   : example_024.php
 // Begin       : 2008-03-04
@@ -43,8 +45,8 @@ $pdf->setKeywords('TCPDF, PDF, example, test, guide');
 $pdf->setHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 024', PDF_HEADER_STRING);
 
 // set header and footer fonts
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+$pdf->setHeaderFont([PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN]);
+$pdf->setFooterFont([PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA]);
 
 // set default monospaced font
 $pdf->setDefaultMonospacedFont(PDF_FONT_MONOSPACED);
@@ -55,15 +57,15 @@ $pdf->setHeaderMargin(PDF_MARGIN_HEADER);
 $pdf->setFooterMargin(PDF_MARGIN_FOOTER);
 
 // set auto page breaks
-$pdf->setAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+$pdf->setAutoPageBreak(true, PDF_MARGIN_BOTTOM);
 
 // set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set some language-dependent strings (optional)
-if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
-	require_once(dirname(__FILE__).'/lang/eng.php');
-	$pdf->setLanguageArray($l);
+if (@file_exists(__DIR__.'/lang/eng.php')) {
+    require_once(__DIR__.'/lang/eng.php');
+    $pdf->setLanguageArray($l);
 }
 
 // ---------------------------------------------------------
@@ -90,7 +92,7 @@ $pdf->Write(0, $txt, '', 0, '', true, 0, false, false, 0);
 $pdf->setFontSize(40);
 
 // change text color
-$pdf->setTextColor(0,63,127);
+$pdf->setTextColor(0, 63, 127);
 
 // set visibility only for screen
 $pdf->setVisibility('screen');
@@ -102,7 +104,7 @@ $pdf->Write(0, '[This line is for display]', '', 0, 'C', true, 0, false, false, 
 $pdf->setVisibility('print');
 
 // change text color
-$pdf->setTextColor(127,0,0);
+$pdf->setTextColor(127, 0, 0);
 
 // write something only for print
 $pdf->Write(0, '[This line is for printout]', '', 0, 'C', true, 0, false, false, 0);
@@ -121,7 +123,7 @@ $pdf->startLayer('layer1', true, true);
 $pdf->setFontSize(18);
 
 // change text color
-$pdf->setTextColor(0,127,0);
+$pdf->setTextColor(0, 127, 0);
 
 $txt = 'Using the startLayer() method you can group PDF objects into layers.
 This text is on "layer1".';

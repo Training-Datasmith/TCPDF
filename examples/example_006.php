@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 //============================================================+
 // File name   : example_006.php
 // Begin       : 2008-03-04
@@ -44,8 +46,8 @@ $pdf->setKeywords('TCPDF, PDF, example, test, guide');
 $pdf->setHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 006', PDF_HEADER_STRING);
 
 // set header and footer fonts
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+$pdf->setHeaderFont([PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN]);
+$pdf->setFooterFont([PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA]);
 
 // set default monospaced font
 $pdf->setDefaultMonospacedFont(PDF_FONT_MONOSPACED);
@@ -56,15 +58,15 @@ $pdf->setHeaderMargin(PDF_MARGIN_HEADER);
 $pdf->setFooterMargin(PDF_MARGIN_FOOTER);
 
 // set auto page breaks
-$pdf->setAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+$pdf->setAutoPageBreak(true, PDF_MARGIN_BOTTOM);
 
 // set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set some language-dependent strings (optional)
-if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
-	require_once(dirname(__FILE__).'/lang/eng.php');
-	$pdf->setLanguageArray($l);
+if (@file_exists(__DIR__.'/lang/eng.php')) {
+    require_once(__DIR__.'/lang/eng.php');
+    $pdf->setLanguageArray($l);
 }
 
 // ---------------------------------------------------------
@@ -117,7 +119,6 @@ List example:
 
 // output the HTML content
 $pdf->writeHTML($html, true, false, true, false, '');
-
 
 // output some RTL HTML content
 $html = '<div style="text-align:center">The words &#8220;<span dir="rtl">&#1502;&#1494;&#1500; [mazel] &#1496;&#1493;&#1489; [tov]</span>&#8221; mean &#8220;Congratulations!&#8221;</div>';
@@ -197,7 +198,7 @@ $pdf->writeHTML($html, true, false, true, false, '');
 
 $html = '<span color="red">red</span> <span color="green">green</span> <span color="blue">blue</span><br /><span color="red">red</span> <span color="green">green</span> <span color="blue">blue</span>';
 
-$pdf->setFillColor(255,255,0);
+$pdf->setFillColor(255, 255, 0);
 
 $pdf->writeHTMLCell(0, 0, '', '', $html, 'LRTB', 1, 0, true, 'L', true);
 $pdf->writeHTMLCell(0, 0, '', '', $html, 'LRTB', 1, 1, true, 'C', true);
@@ -234,9 +235,9 @@ $html = '<h1>Embedded Images</h1>
 <tr><td>src="data..."</td><td><img src="@DATA2@" border="0" height="41" width="41" /></td></tr>
 </table>';
 
-$data = base64_encode(file_get_contents("images/logo_example.png"));
-$html = str_replace("@DATA1@", "@" . $data, $html);
-$html = str_replace("@DATA2@", "data:image/png;base64," . $data, $html);
+$data = base64_encode(file_get_contents('images/logo_example.png'));
+$html = str_replace('@DATA1@', '@' . $data, $html);
+$html = str_replace('@DATA2@', 'data:image/png;base64,' . $data, $html);
 
 // output the HTML content
 $pdf->writeHTML($html, true, false, true, false, '');
@@ -253,9 +254,9 @@ $pdf->AddPage();
 $textcolors = '<h1>HTML Text Colors</h1>';
 $bgcolors = '<hr /><h1>HTML Background Colors</h1>';
 
-foreach(TCPDF_COLORS::$webcolor as $k => $v) {
-	$textcolors .= '<span color="#'.$v.'">'.$v.'</span> ';
-	$bgcolors .= '<span bgcolor="#'.$v.'" color="#333333">'.$v.'</span> ';
+foreach (TCPDF_COLORS::$webcolor as $v) {
+    $textcolors .= '<span color="#'.$v.'">'.$v.'</span> ';
+    $bgcolors .= '<span bgcolor="#'.$v.'" color="#333333">'.$v.'</span> ';
 }
 
 // output the HTML content

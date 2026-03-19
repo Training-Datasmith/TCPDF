@@ -1547,9 +1547,17 @@ class TCPDF_FONTS {
 		$fontfile = '';
 		// search files on various directories
 		if (($fontdir !== false) AND @TCPDF_STATIC::file_exists($fontdir.$file)) {
-			$fontfile = $fontdir.$file;
+			$candidate = realpath($fontdir.$file);
+			$base = realpath($fontdir);
+			if ($candidate !== false && $base !== false && strpos($candidate, $base.DIRECTORY_SEPARATOR) === 0) {
+				$fontfile = $candidate;
+			}
 		} elseif (@TCPDF_STATIC::file_exists(self::_getfontpath().$file)) {
-			$fontfile = self::_getfontpath().$file;
+			$candidate = realpath(self::_getfontpath().$file);
+			$base = realpath(self::_getfontpath());
+			if ($candidate !== false && $base !== false && strpos($candidate, $base.DIRECTORY_SEPARATOR) === 0) {
+				$fontfile = $candidate;
+			}
 		} elseif (@TCPDF_STATIC::file_exists($file)) {
 			$fontfile = $file;
 		}

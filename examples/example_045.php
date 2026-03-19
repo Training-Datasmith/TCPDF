@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 //============================================================+
 // File name   : example_045.php
 // Begin       : 2008-03-04
@@ -44,8 +46,8 @@ $pdf->setKeywords('TCPDF, PDF, example, test, guide');
 $pdf->setHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 045', PDF_HEADER_STRING);
 
 // set header and footer fonts
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+$pdf->setHeaderFont([PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN]);
+$pdf->setFooterFont([PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA]);
 
 // set default monospaced font
 $pdf->setDefaultMonospacedFont(PDF_FONT_MONOSPACED);
@@ -56,15 +58,15 @@ $pdf->setHeaderMargin(PDF_MARGIN_HEADER);
 $pdf->setFooterMargin(PDF_MARGIN_FOOTER);
 
 // set auto page breaks
-$pdf->setAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+$pdf->setAutoPageBreak(true, PDF_MARGIN_BOTTOM);
 
 // set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 // set some language-dependent strings (optional)
-if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
-	require_once(dirname(__FILE__).'/lang/eng.php');
-	$pdf->setLanguageArray($l);
+if (@file_exists(__DIR__.'/lang/eng.php')) {
+    require_once(__DIR__.'/lang/eng.php');
+    $pdf->setLanguageArray($l);
 }
 
 // ---------------------------------------------------------
@@ -76,7 +78,7 @@ $pdf->setFont('times', 'B', 20);
 $pdf->AddPage();
 
 // set a bookmark for the current position
-$pdf->Bookmark('Chapter 1', 0, 0, '', 'B', array(0,64,128));
+$pdf->Bookmark('Chapter 1', 0, 0, '', 'B', [0,64,128]);
 
 // print a line using Cell()
 $pdf->Cell(0, 10, 'Chapter 1', 0, 1, 'L');
@@ -87,31 +89,30 @@ $pdf->setLink($index_link, 0, '*1');
 $pdf->Cell(0, 10, 'Link to INDEX', 0, 1, 'R', false, $index_link);
 
 $pdf->AddPage();
-$pdf->Bookmark('Paragraph 1.1', 1, 0, '', '', array(128,0,0));
+$pdf->Bookmark('Paragraph 1.1', 1, 0, '', '', [128,0,0]);
 $pdf->Cell(0, 10, 'Paragraph 1.1', 0, 1, 'L');
 
 $pdf->AddPage();
-$pdf->Bookmark('Paragraph 1.2', 1, 0, '', '', array(128,0,0));
+$pdf->Bookmark('Paragraph 1.2', 1, 0, '', '', [128,0,0]);
 $pdf->Cell(0, 10, 'Paragraph 1.2', 0, 1, 'L');
 
 $pdf->AddPage();
-$pdf->Bookmark('Sub-Paragraph 1.2.1', 2, 0, '', 'I', array(0,128,0));
+$pdf->Bookmark('Sub-Paragraph 1.2.1', 2, 0, '', 'I', [0,128,0]);
 $pdf->Cell(0, 10, 'Sub-Paragraph 1.2.1', 0, 1, 'L');
 
 $pdf->AddPage();
-$pdf->Bookmark('Paragraph 1.3', 1, 0, '', '', array(128,0,0));
+$pdf->Bookmark('Paragraph 1.3', 1, 0, '', '', [128,0,0]);
 $pdf->Cell(0, 10, 'Paragraph 1.3', 0, 1, 'L');
 
 // fixed link to the first page using the * character
 $html = '<a href="#*1" style="color:blue;">link to INDEX (page 1)</a>';
 $pdf->writeHTML($html, true, false, true, false, '');
 
-
 // add some pages and bookmarks
 for ($i = 2; $i < 12; $i++) {
-	$pdf->AddPage();
-	$pdf->Bookmark('Chapter '.$i, 0, 0, '', 'B', array(0,64,128));
-	$pdf->Cell(0, 10, 'Chapter '.$i, 0, 1, 'L');
+    $pdf->AddPage();
+    $pdf->Bookmark('Chapter '.$i, 0, 0, '', 'B', [0,64,128]);
+    $pdf->Cell(0, 10, 'Chapter '.$i, 0, 1, 'L');
 }
 
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
@@ -128,7 +129,7 @@ $pdf->setFont('dejavusans', '', 12);
 
 // add a simple Table Of Content at first page
 // (check the example n. 59 for the HTML version)
-$pdf->addTOC(1, 'courier', '.', 'INDEX', 'B', array(128,0,0));
+$pdf->addTOC(1, 'courier', '.', 'INDEX', 'B', [128,0,0]);
 
 // end of TOC page
 $pdf->endTOCPage();
