@@ -9,7 +9,7 @@ function test_filter_available_and_hex()
     );
     expect_same('AB', TCPDF_FILTERS::decodeFilter('ASCIIHexDecode', '4142>'), 'hex ab');
     expect_same('AB', TCPDF_FILTERS::decodeFilter('ASCIIHexDecode', "41 42>"), 'hex spaced');
-    expect_same("\x04", TCPDF_FILTERS::decodeFilter('ASCIIHexDecode', '4>'), 'hex odd nibble with EOD');
+    expect_same('@', TCPDF_FILTERS::decodeFilter('ASCIIHexDecode', '4>'), 'hex odd nibble with EOD');
     expect_exception(
         'decodeFilterASCIIHexDecode: invalid code',
         function () {

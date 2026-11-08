@@ -165,7 +165,7 @@ class TCPDF_FILTERS {
 			// odd number of hexadecimal digits
 			if ($eod) {
 				// EOD shall behave as if a 0 (zero) followed the last digit
-				$data = substr($data, 0, -1).'0'.substr($data, -1);
+				$data .= '0';
 			} else {
 				self::Error('decodeFilterASCIIHexDecode: invalid code');
 			}

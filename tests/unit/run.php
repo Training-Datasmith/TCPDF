@@ -9,11 +9,21 @@ if (PHP_VERSION_ID < 70100) {
 date_default_timezone_set('UTC');
 setlocale(LC_NUMERIC, 'C');
 
+error_reporting(E_ALL);
+set_error_handler(function ($severity, $message, $file, $line) {
+    if (!(error_reporting() & $severity)) {
+        return false;
+    }
+    throw new ErrorException($message, 0, $severity, $file, $line);
+});
+
 $rootDir = dirname(__DIR__, 2);
 if (!file_exists($rootDir . '/tcpdf.php')) {
     fwrite(STDERR, "Could not locate tcpdf.php under $rootDir\n");
     exit(1);
 }
+
+try {
 
 if (!defined('K_TCPDF_THROW_EXCEPTION_ERROR')) {
     define('K_TCPDF_THROW_EXCEPTION_ERROR', true);
@@ -74,3 +84,8 @@ foreach ($testFunctions as $fn) {
 
 echo $passed . ' passed, ' . $failed . ' failed' . PHP_EOL;
 exit($failed === 0 ? 0 : 1);
+
+} catch (Throwable $e) {
+    echo 'FAIL bootstrap: ' . $e->getMessage() . PHP_EOL;
+    exit(1);
+}
